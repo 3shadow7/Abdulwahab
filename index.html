@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دعوة إلى مأدبة غداء</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@500;700&family=Cormorant+Garamond:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#fbf6e9;--cream2:#f3ead3;--gold:#b8935a;--gold2:#8f6d37;--green:#1f3a34;--ink:#24312d}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:radial-gradient(circle at 50% 0,var(--cream),var(--cream2));color:var(--ink);font-family:'Amiri',Georgia,serif;overflow-x:hidden}
+html[lang=en] body{font-family:'Cormorant Garamond',Georgia,serif}
+html[lang=en] .title,html[lang=en] .name{font-family:'Cormorant Garamond',Georgia,serif}
+#shapes{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.shape{position:absolute;bottom:-80px;color:var(--gold);opacity:.3;animation:rise linear infinite}
+.shape.g{color:var(--green);opacity:.16}
+.shape svg{width:100%;height:100%;display:block}
+@keyframes rise{from{transform:translateY(0) rotate(0)}to{transform:translateY(-115vh) rotate(360deg)}}
+
+/* envelope intro */
+button{font:inherit;cursor:pointer}
+#intro{position:fixed;inset:0;z-index:20;overflow:hidden;background:#18302a}
+#intro.fade{opacity:0;transition:opacity 1.6s ease-out}
+#intro.hide{visibility:hidden}
+#env{position:absolute;inset:0;width:100%;height:100%;display:block}
+#intro.zoom #env{transform:scale(12);transition:transform 1.9s cubic-bezier(.6,0,.9,.5)}
+.itxt{position:absolute;top:19%;left:0;right:0;text-align:center;color:var(--cream);pointer-events:none}
+.itxt p{font-family:'Reem Kufi','Amiri',serif;font-size:clamp(1.2rem,4.5vw,1.8rem)}
+.itxt h2{font-family:'Reem Kufi','Amiri',serif;font-size:clamp(1.8rem,7vw,3rem);color:#e6c47c;margin-top:6px}
+#open{position:absolute;left:50%;top:67%;translate:-50% 0;background:var(--gold);color:#fff;border:0;padding:12px 40px;border-radius:40px;font-size:1.25rem;font-family:'Reem Kufi','Amiri',serif;box-shadow:0 0 0 6px rgba(184,147,90,.3),0 8px 24px rgba(0,0,0,.35)}
+#open:focus-visible,.ctl:focus-visible{outline:3px solid #fff;outline-offset:3px}
+#intro.opening #open,#intro.opening .itxt{opacity:0;pointer-events:none;transition:opacity .5s}
+.flap{transform-box:fill-box;transform-origin:50% 0}
+#intro.opening .flap{animation:flip 1s ease-in-out forwards}
+@keyframes flip{to{transform:scaleY(-1)}}
+.eseal{transition:opacity .4s}
+#intro.opening .eseal{opacity:0}
+.light{opacity:0;transform-box:fill-box;transform-origin:50% 50%;transform:scale(.1)}
+#intro.opening .light{animation:lightIn 1.5s .5s ease-in forwards}
+@keyframes lightIn{to{opacity:1;transform:scale(2.4)}}
+.flash{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 55%,#fff 0,#fffbe6 40%,#ffeaa8 100%);transition:opacity 1.1s ease-in .7s}
+#intro.zoom .flash{opacity:1}
+
+/* card */
+main{position:relative;z-index:1;min-height:100%;display:grid;place-items:center;padding:28px 14px}
+.card{width:min(560px,100%);background:rgba(251,246,233,.92);border:2px solid var(--gold);outline:1px solid var(--gold);outline-offset:-10px;padding:42px 26px 34px;text-align:center;box-shadow:0 18px 50px rgba(60,45,15,.18);opacity:0;transform:scale(.94);transition:opacity 1.2s .3s,transform 1.2s .3s}
+body.open .card{opacity:1;transform:none}
+.bism{font-family:'Reem Kufi','Amiri',serif;font-size:1.9rem;color:var(--green);margin-bottom:14px}
+.title{font-family:'Reem Kufi','Amiri',serif;font-weight:700;font-size:clamp(2.1rem,8vw,3rem);background:linear-gradient(180deg,#d9b877,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent;margin:6px 0 14px}
+.lead{font-size:1.45rem;line-height:1.7;color:var(--green);font-weight:700}
+.name{font-family:'Reem Kufi','Amiri',serif;font-size:1.7rem;color:var(--green);margin-top:2px}
+.div{height:22px;margin:16px auto;width:80%;color:var(--gold);display:flex;align-items:center;gap:10px}
+.div::before,.div::after{content:"";flex:1;height:1px;background:currentColor}
+.div svg{width:22px;height:22px}
+.lbl{font-size:1.15rem;color:var(--gold2)}
+.val{font-size:1.65rem;font-weight:700;color:var(--green);margin-top:2px}
+.foot{margin-top:6px;font-size:1.15rem}
+#count{display:flex;justify-content:center;gap:10px;margin-top:20px;direction:ltr}
+#count div{min-width:62px;border:1px solid var(--gold);padding:8px 4px;background:var(--cream)}
+#count b{display:block;font-size:1.6rem;color:var(--green);font-family:Georgia,serif}
+#count span{font-size:.85rem;color:var(--gold2)}
+.dua{margin-top:14px;font-size:1.1rem;color:var(--gold2)}
+
+/* ===== flowers, light, music button ===== */
+.glow{position:fixed;left:50%;top:-10vh;width:150vmax;height:120vh;margin-left:-75vmax;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 30%,rgba(255,248,214,.95),rgba(255,233,168,.45) 32%,transparent 62%);animation:pulse 5s ease-in-out infinite alternate}
+@keyframes pulse{from{opacity:.65;scale:1}to{opacity:1;scale:1.08}}
+.rays{position:fixed;top:0;left:50%;width:150vw;height:95vh;margin-left:-75vw;z-index:0;pointer-events:none;transform-origin:50% 0;background:repeating-conic-gradient(from 0deg at 50% 0,rgba(255,226,150,.28) 0 5deg,transparent 5deg 13deg);-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%);animation:sway 14s ease-in-out infinite alternate}
+@keyframes sway{from{rotate:-6deg}to{rotate:6deg}}
+.sp{position:fixed;z-index:0;color:#e3b75a;pointer-events:none;filter:drop-shadow(0 0 5px #fff1b8);animation:tw ease-in-out infinite}
+.sp svg{width:100%;height:100%;display:block}
+@keyframes tw{0%,100%{opacity:0;scale:.3}50%{opacity:1;scale:1}}
+#petals{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.petal{position:absolute;top:-60px;opacity:.85;animation:fall linear infinite}
+.petal svg{width:100%;height:100%;display:block}
+@keyframes fall{0%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(46px,58vh,0) rotate(200deg)}100%{transform:translate3d(-24px,118vh,0) rotate(380deg)}}
+.card{position:relative;overflow:hidden}
+.card>*:not(.fl){position:relative;z-index:1}
+.fl{opacity:.5;filter:drop-shadow(0 3px 5px rgba(80,60,25,.3));position:absolute;width:clamp(130px,36vw,215px);aspect-ratio:1;z-index:0;pointer-events:none;animation:breathe 6s ease-in-out infinite alternate}
+.fl.tl{top:-4px;left:-4px;transform-origin:0 0}
+.fl.br{bottom:-4px;right:-4px;transform:rotate(180deg);transform-origin:100% 100%}
+@keyframes breathe{from{scale:1}to{scale:1.06}}
+main{padding-bottom:86px}
+.music{position:fixed;bottom:14px;left:50%;translate:-50% 0;z-index:30;display:flex;align-items:center;gap:10px;background:var(--green);color:var(--cream);border:1px solid var(--gold);border-radius:40px;padding:9px 22px;font-size:1.05rem;font-family:inherit;box-shadow:0 6px 22px rgba(0,0,0,.28)}
+.music:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.music .pl{width:16px;height:16px}
+.music.on .pl,.music:not(.on) .eq{display:none}
+.eq{display:flex;align-items:flex-end;gap:3px;height:16px}
+.eq i{width:3px;height:4px;background:var(--gold);border-radius:2px;animation:eq .9s ease-in-out infinite alternate}
+.eq i:nth-child(2){animation-delay:-.3s}.eq i:nth-child(3){animation-delay:-.6s}
+@keyframes eq{to{height:16px}}
+@media (prefers-reduced-motion:reduce){.glow,.rays,.sp,.petal,.fl,.eq i{animation:none}.sp{opacity:.7}.petal{display:none}}
+
+/* controls */
+.ctls{position:fixed;top:12px;right:12px;z-index:30;display:flex;gap:8px}
+.ctl{background:var(--cream);color:var(--green);border:1px solid var(--gold);border-radius:30px;padding:6px 14px;font-size:1rem}
+@media (prefers-reduced-motion:reduce){.shape,.seal{animation:none}.card{transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <radialGradient id="pg" cx=".5" cy=".12" r=".95"><stop offset="0" stop-color="#fffefb"/><stop offset=".55" stop-color="#fbf2de"/><stop offset="1" stop-color="#e6d0a0"/></radialGradient>
+    <radialGradient id="pg2" cx=".5" cy=".12" r=".95"><stop offset="0" stop-color="#fff8ea"/><stop offset=".5" stop-color="#f6e6c4"/><stop offset="1" stop-color="#d9bd86"/></radialGradient>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b9d7c"/><stop offset="1" stop-color="#3b5a43"/></linearGradient>
+    <path id="pt" d="M60 62C28 56 20 24 42 13c11-6 25-6 36 0 22 11 14 43-18 49z"/>
+  </defs>
+  <symbol id="star" viewBox="0 0 100 100"><path d="M50 2 61 25 85 15 75 39 98 50 75 61 85 85 61 75 50 98 39 75 15 85 25 61 2 50 25 39 15 15 39 25Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="50" cy="50" r="9" fill="currentColor"/></symbol>
+  <symbol id="moon" viewBox="0 0 100 100"><path d="M62 8a42 42 0 1 0 0 84a34 34 0 1 1 0-84z" fill="currentColor"/></symbol>
+  <symbol id="leaf" viewBox="0 0 60 100"><path d="M30 2C58 30 58 70 30 98 2 70 2 30 30 2z" fill="url(#lg)"/><g stroke="#2f4a38" stroke-width="1.4" fill="none" opacity=".7"><path d="M30 10V92"/><path d="M30 34l-12-10M30 34l12-10M30 54l-14-11M30 54l14-11M30 74l-11-9M30 74l11-9"/></g></symbol>
+  <symbol id="rose" viewBox="0 0 120 120">
+    <g stroke="#cbb27a" stroke-width=".8" stroke-linejoin="round">
+      <g fill="url(#pg)"><use href="#pt" transform="rotate(0 60 60)"/><use href="#pt" transform="rotate(72 60 60)"/><use href="#pt" transform="rotate(144 60 60)"/><use href="#pt" transform="rotate(216 60 60)"/><use href="#pt" transform="rotate(288 60 60)"/></g>
+      <g fill="url(#pg)" transform="translate(60 60) scale(.8) translate(-60 -60)"><use href="#pt" transform="rotate(36 60 60)"/><use href="#pt" transform="rotate(108 60 60)"/><use href="#pt" transform="rotate(180 60 60)"/><use href="#pt" transform="rotate(252 60 60)"/><use href="#pt" transform="rotate(324 60 60)"/></g>
+      <g fill="url(#pg2)" transform="translate(60 60) scale(.58) translate(-60 -60)"><use href="#pt" transform="rotate(10 60 60)"/><use href="#pt" transform="rotate(100 60 60)"/><use href="#pt" transform="rotate(190 60 60)"/><use href="#pt" transform="rotate(280 60 60)"/></g>
+      <g fill="url(#pg2)" transform="translate(60 60) scale(.36) translate(-60 -60)"><use href="#pt" transform="rotate(50 60 60)"/><use href="#pt" transform="rotate(170 60 60)"/><use href="#pt" transform="rotate(290 60 60)"/></g>
+    </g>
+    <g fill="none" stroke="#c9ab6c" stroke-width="1.1" stroke-linecap="round"><path d="M60 52c7-3 13 3 10 9-3 6-11 6-14 1"/><path d="M60 57c3-1 5 2 3 4"/></g>
+    <g fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity=".85"><path d="M38 17c11-6 33-6 44 0"/><path d="M31 31c-3 8 0 14 4 18" opacity=".6"/><path d="M89 31c3 8 0 14-4 18" opacity=".6"/></g>
+  </symbol>
+  <symbol id="bud" viewBox="0 0 40 40"><g fill="#fffaf0" stroke="#cbb685" stroke-width="1"><circle cx="20" cy="9" r="8"/><circle cx="31" cy="17" r="8"/><circle cx="27" cy="30" r="8"/><circle cx="13" cy="30" r="8"/><circle cx="9" cy="17" r="8"/></g><circle cx="20" cy="20" r="5" fill="#c9a24f"/></symbol>
+  <symbol id="petal" viewBox="0 0 40 60"><path d="M20 2C40 14 40 44 20 58 0 44 0 14 20 2z" fill="currentColor"/></symbol>
+  <symbol id="spark" viewBox="0 0 100 100"><path d="M50 0C54 38 62 46 100 50 62 54 54 62 50 100 46 62 38 54 0 50 38 46 46 38 50 0z" fill="currentColor"/></symbol>
+  <symbol id="playi" viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="cluster" viewBox="0 0 220 220">
+    <g transform="translate(40 40) rotate(-14)"><use href="#leaf" x="-22" y="0" width="44" height="176"/></g>
+    <g transform="translate(40 40) rotate(-44)"><use href="#leaf" x="-21" y="0" width="42" height="168"/></g>
+    <g transform="translate(40 40) rotate(-74)"><use href="#leaf" x="-20" y="0" width="40" height="156"/></g>
+    <g transform="translate(40 44) rotate(-100)"><use href="#leaf" x="-17" y="0" width="34" height="120"/></g>
+    <use href="#rose" x="2" y="2" width="126" height="126"/>
+    <use href="#rose" x="134" y="8" width="62" height="62"/>
+    <use href="#rose" x="8" y="134" width="62" height="62"/>
+    <use href="#bud" x="160" y="104" width="26" height="26"/><use href="#bud" x="104" y="160" width="26" height="26"/><use href="#bud" x="186" y="52" width="20" height="20"/><use href="#bud" x="52" y="188" width="20" height="20"/>
+    <g fill="#fffaf0" stroke="#d9c79b" stroke-width=".8"><circle cx="196" cy="24" r="4"/><circle cx="206" cy="38" r="3"/><circle cx="184" cy="16" r="3"/><circle cx="24" cy="196" r="4"/><circle cx="38" cy="206" r="3"/><circle cx="16" cy="184" r="3"/><circle cx="136" cy="120" r="3"/><circle cx="120" cy="136" r="3"/></g>
+  </symbol>
+  <symbol id="dia" viewBox="0 0 100 100"><path d="M50 4 96 50 50 96 4 50Z" fill="none" stroke="currentColor" stroke-width="4"/><path d="M50 28 72 50 50 72 28 50Z" fill="currentColor"/></symbol>
+</svg>
+
+<div class="ctls">
+  <button class="ctl" id="lang" type="button">English</button>
+  
+</div>
+
+<div class="glow" aria-hidden="true"></div>
+<div class="rays" aria-hidden="true"></div>
+<div id="shapes" aria-hidden="true"></div>
+<div id="petals" aria-hidden="true"></div>
+<button class="music" id="mus" type="button" aria-pressed="false"><svg class="pl"><use href="#playi"/></svg><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span id="musT" data-i="musOn"></span></button>
+
+<section id="intro">
+  <svg id="env" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+  <div class="itxt"><p data-i="splash"></p><h2 data-i="groom"></h2></div>
+  <button id="open" type="button" data-i="openBtn"></button>
+  <div class="flash"></div>
+</section>
+
+<main>
+  <article class="card">
+    <svg class="fl tl" viewBox="0 0 220 220" aria-hidden="true"><use href="#cluster"/></svg>
+    <svg class="fl br" viewBox="0 0 220 220" aria-hidden="true"><use href="#cluster"/></svg>
+    <div class="bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1 class="title" id="vTitle"></h1>
+    <p class="lead" id="vLead"></p>
+    <p class="name" data-i="groom"></p>
+
+    <div class="div"><svg><use href="#dia"/></svg></div>
+    <p class="lbl" data-i="dayL"></p><p class="val" id="vDay"></p>
+    <div class="div"><svg><use href="#dia"/></svg></div>
+    <p class="lbl" data-i="dateL"></p><p class="val" dir="ltr" id="vDate"></p>
+    <div class="div"><svg><use href="#dia"/></svg></div>
+    <p class="lbl" data-i="timeL"></p><p class="val" id="vTime"></p>
+    <div class="div"><svg><use href="#dia"/></svg></div>
+    <p class="lbl" data-i="placeL"></p><p class="val" id="vPlace"></p>
+    <div class="div"><svg><use href="#dia"/></svg></div>
+
+    <p class="foot" data-i="foot"></p>
+    <div id="count" aria-live="off"></div>
+    <p class="dua" data-i="dua"></p>
+  </article>
+</main>
+
+<audio id="bg" loop preload="auto"></audio>
+
+<script>
+const T={
+ar:{splash:"دعوة خاصة لكم",openBtn:"افتح الدعوة",groom:"عبدالوهاب العوزي",dayL:"اليوم:",dateL:"التاريخ:",timeL:"الوقت:",placeL:"المكان:",foot:"حضوركم يسعدنا ويكمل فرحتنا",dua:"بارك الله لهما وبارك عليهما وجمع بينهما في خير",musOn:"إيقاف الموسيقى",musOff:"تشغيل الموسيقى",other:"English",units:["يوم","ساعة","دقيقة","ثانية"],now:"حان الموعد"},
+en:{splash:"A special invitation for you",openBtn:"Open the invitation",groom:"Abdulwahab Al-Ouzi",dayL:"Day",dateL:"Date",timeL:"Time",placeL:"Venue",foot:"Your presence brings us joy and completes our happiness",dua:"May Allah bless them and unite them in goodness",musOn:"Stop music",musOff:"Play music",other:"العربية",units:["Days","Hours","Minutes","Seconds"],now:"The time has come"}
+};
+let lang=localStorage.getItem('lang')||'ar',playing=false;
+const $=s=>document.querySelector(s),bg=$('#bg');
+
+/* ===== MUSIC: paste any direct .mp3 link here (or a local file name like "music.mp3") =====
+   NOTE: this link is only a stand-in so the button works; replace it with your own music. */
+const MUSIC_URL="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+bg.src=MUSIC_URL;bg.addEventListener('error',()=>{playing=false;showMusic()});
+
+function setLang(l){
+  lang=l;try{localStorage.setItem('lang',l)}catch(e){}
+  document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';
+  document.title=T[l].title;
+  document.querySelectorAll('[data-i]').forEach(e=>{
+    let k=e.dataset.i; if(k==='musOn') k=playing?'musOn':'musOff'; e.textContent=T[l][k];
+  });
+  $('#lang').textContent=T[l].other;
+  render(false);
+}
+
+/* floating 2D shapes: stars, crescents, diamonds (no figures, no faces) */
+(function(){
+  const box=$('#shapes'),ids=['star','moon','dia','star'];
+  for(let i=0;i<20;i++){
+    const d=document.createElement('div'),s=18+Math.random()*46;
+    d.className='shape'+(Math.random()<.35?' g':'');
+    d.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s}px;animation-duration:${16+Math.random()*22}s;animation-delay:-${Math.random()*30}s`;
+    d.innerHTML=`<svg><use href="#${ids[i%ids.length]}"/></svg>`;
+    box.appendChild(d);
+  }
+})();
+
+/* sparkles (bright light) and falling petals */
+(function(){
+  for(let i=0;i<26;i++){
+    const d=document.createElement('div'),s=10+Math.random()*18;
+    d.className='sp';d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${s}px;height:${s}px;animation-duration:${2.5+Math.random()*3.5}s;animation-delay:-${Math.random()*6}s`;
+    d.innerHTML='<svg><use href="#spark"/></svg>';document.body.appendChild(d);
+  }
+  const box=$('#petals'),cols=['#f6dcd8','#fff7ee','#f3cfcb','#fffdf6'];
+  for(let i=0;i<12;i++){
+    const d=document.createElement('div'),s=14+Math.random()*14;
+    d.className='petal';d.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s*1.5}px;color:${cols[i%4]};animation-duration:${11+Math.random()*10}s;animation-delay:-${Math.random()*20}s`;
+    d.innerHTML='<svg><use href="#petal"/></svg>';box.appendChild(d);
+  }
+})();
+
+/* countdown to 12 Oct 2026, ~1:00 PM local time (after Dhuhr) */
+/* ===== EDIT HERE: this page's details (date = [year, month, day], hm = [hour, minute] 24h) ===== */
+const EV={date:[2026,10,12],hm:[13,0],
+  title:{ar:"دعوة إلى مأدبة غداء",en:"Invitation to a Wedding Lunch"},
+  lead:{ar:"يسعدنا دعوتكم لمأدبة غداء العريس",en:"We are delighted to invite you to the wedding lunch of the groom"},
+  time:{ar:"بعد صلاة الظهر",en:"After Dhuhr prayer"},place:{ar:"صالة أوركيدا",en:"Orchida Hall"}};
+function getTarget(){return new Date(EV.date[0],EV.date[1]-1,EV.date[2],EV.hm[0],EV.hm[1])}
+function render(){
+  const d=new Date(EV.date[0],EV.date[1]-1,EV.date[2]),p=n=>String(n).padStart(2,'0');
+  $('#vTitle').textContent=EV.title[lang];$('#vLead').textContent=EV.lead[lang];document.title=EV.title[lang];
+  $('#vDay').textContent=d.toLocaleDateString(lang==='ar'?'ar-u-nu-latn':'en-GB',{weekday:'long'});
+  $('#vDate').textContent=`${p(EV.date[2])} / ${p(EV.date[1])} / ${EV.date[0]}`;
+  $('#vTime').textContent=EV.time[lang];$('#vPlace').textContent=EV.place[lang];
+  tick();
+}
+function tick(){
+  let d=Math.max(0,getTarget()-Date.now()),u=T[lang].units;
+  if(d===0){$('#count').textContent=T[lang].now;return}
+  const v=[Math.floor(d/864e5),Math.floor(d/36e5)%24,Math.floor(d/6e4)%60,Math.floor(d/1e3)%60];
+  $('#count').innerHTML=v.map((n,i)=>`<div><b>${String(n).padStart(2,'0')}</b><span>${u[i]}</span></div>`).join('');
+}
+setInterval(tick,1000);
+
+/* music: browsers only allow sound after a tap, so it starts on "Open"; the bottom button plays / stops it */
+function showMusic(){
+  const m=$('#mus');m.classList.toggle('on',playing);m.setAttribute('aria-pressed',playing);
+  $('#musT').textContent=T[lang][playing?'musOn':'musOff'];
+}
+function setMusic(on){
+  if(on){bg.play().then(()=>{playing=true;showMusic()}).catch(()=>{playing=false;showMusic()})}
+  else{bg.pause();playing=false;showMusic()}
+}
+/* envelope: built to match the screen shape, so it fills the whole page */
+let opened=false;
+function buildEnv(){
+  const W=1000,H=Math.round(1000*innerHeight/innerWidth),ax=W/2,ay=Math.round(H*.55),r=Math.round(Math.min(W,H)*.07);
+  let st='';for(let i=0;i<16;i++){const s=40+((i*37)%60);st+=`<use href="#star" x="${(i*173)%W}" y="${(i*251)%H}" width="${s}" height="${s}"/>`}
+  const e=$('#env');e.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  e.innerHTML=`<defs>
+    <radialGradient id="lightg"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#fff6d2"/><stop offset=".7" stop-color="#ffd980" stop-opacity=".6"/><stop offset="1" stop-color="#ffd980" stop-opacity="0"/></radialGradient>
+    <linearGradient id="flapg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f5a4e"/><stop offset="1" stop-color="#1f4036"/></linearGradient>
+    <radialGradient id="sealg" cx=".35" cy=".3"><stop offset="0" stop-color="#f1d58f"/><stop offset="1" stop-color="#a47c36"/></radialGradient></defs>
+    <rect width="${W}" height="${H}" fill="#18302a"/>
+    <g style="color:#c9a24f" opacity=".16">${st}</g>
+    <rect x="${W*.17}" y="${H*.08}" width="${W*.66}" height="${H*.8}" fill="#fbf6e9" stroke="#b8935a" stroke-width="4"/>
+    <path d="M0 0L0 ${H} ${ax} ${ay}Z" fill="#244a40"/><path d="M${W} 0L${W} ${H} ${ax} ${ay}Z" fill="#1f4036"/><path d="M0 ${H}L${W} ${H} ${ax} ${ay}Z" fill="#2c5a4d"/>
+    <path d="M0 ${H}L${ax} ${ay} ${W} ${H}M0 0L${ax} ${ay}M${W} 0L${ax} ${ay}" fill="none" stroke="#c9a24f" stroke-width="2" opacity=".6"/>
+    <g class="flap"><path d="M0 0L${W} 0 ${ax} ${ay}Z" fill="url(#flapg)" stroke="#c9a24f" stroke-width="3"/></g>
+    <g class="eseal"><circle cx="${ax}" cy="${ay}" r="${r}" fill="url(#sealg)" stroke="#fff3c4" stroke-width="3"/><use href="#star" x="${ax-r*.6}" y="${ay-r*.6}" width="${r*1.2}" height="${r*1.2}" style="color:#18302a"/></g>
+    <g class="light"><circle cx="${ax}" cy="${ay}" r="${Math.max(W,H)*.35}" fill="url(#lightg)"/></g>`;
+  e.style.transformOrigin=`50% ${ay/H*100}%`;
+  $('.flash').style.background=`radial-gradient(circle at 50% ${ay/H*100}%,#fff 0,#fffbe6 40%,#ffeaa8 100%)`;
+}
+buildEnv();addEventListener('resize',()=>{if(!opened)buildEnv()});
+
+/* click: flap opens -> bright light -> zoom into the letter -> light fades -> invitation card */
+$('#open').onclick=()=>{
+  if(opened)return;opened=true;
+  const it=$('#intro');bg.volume=.6;setMusic(true);
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){it.classList.add('hide');document.body.classList.add('open');return}
+  it.classList.add('opening');
+  setTimeout(()=>it.classList.add('zoom'),1100);
+  setTimeout(()=>{document.body.classList.add('open');it.classList.add('fade')},3300);
+  setTimeout(()=>it.classList.add('hide'),5000);
+};
+$('#mus').onclick=()=>setMusic(!playing);
+$('#lang').onclick=()=>setLang(lang==='ar'?'en':'ar');
+setLang(lang);
+</script>
+</body>
+</html>
