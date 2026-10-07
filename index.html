@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>دعوة إلى مأدبة غداء</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@500;700&family=Cormorant+Garamond:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@500;700&family=Cormorant+Garamond:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 :root{--cream:#fbf6e9;--cream2:#f3ead3;--gold:#b8935a;--gold2:#8f6d37;--green:#1f3a34;--ink:#24312d}
 *{box-sizing:border-box;margin:0}
@@ -34,8 +34,15 @@ button{font:inherit;cursor:pointer}
 .flap{transform-box:fill-box;transform-origin:50% 0}
 #intro.opening .flap{animation:flip 1s ease-in-out forwards}
 @keyframes flip{to{transform:scaleY(-1)}}
-.eseal{transition:opacity .4s}
-#intro.opening .eseal{opacity:0}
+.eseal{transition:opacity .45s,transform .45s;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 5px 5px rgba(0,0,0,.5))}
+#intro.opening .eseal{opacity:0;transform:scale(1.3) rotate(8deg)}
+/* attention pulse on the open button */
+#open{animation:callout 2.2s ease-out infinite}
+#intro.opening #open{animation:none}
+@keyframes callout{0%{scale:1;box-shadow:0 0 0 0 rgba(230,196,124,.75),0 0 0 6px rgba(184,147,90,.3),0 8px 24px rgba(0,0,0,.35)}
+65%{scale:1.06;box-shadow:0 0 0 26px rgba(230,196,124,0),0 0 0 6px rgba(184,147,90,.3),0 8px 24px rgba(0,0,0,.35)}
+100%{scale:1;box-shadow:0 0 0 0 rgba(230,196,124,0),0 0 0 6px rgba(184,147,90,.3),0 8px 24px rgba(0,0,0,.35)}}
+@media (prefers-reduced-motion:reduce){#open{animation:none}}
 .light{opacity:0;transform-box:fill-box;transform-origin:50% 50%;transform:scale(.1)}
 #intro.opening .light{animation:lightIn 1.5s .5s ease-in forwards}
 @keyframes lightIn{to{opacity:1;transform:scale(2.4)}}
@@ -91,6 +98,12 @@ main{padding-bottom:86px}
 @keyframes eq{to{height:16px}}
 @media (prefers-reduced-motion:reduce){.glow,.rays,.sp,.petal,.fl,.eq i{animation:none}.sp{opacity:.7}.petal{display:none}}
 
+.scene{display:block;width:min(185px,56%);margin:8px auto 0;overflow:visible;filter:drop-shadow(0 5px 6px rgba(90,65,20,.28))}
+.rings{animation:bob 5s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.rings{animation:none}}
+.tws{transform-box:fill-box;transform-origin:center;animation:tw 2.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.tws{animation:none}}
 /* controls */
 .ctls{position:fixed;top:12px;right:12px;z-index:30;display:flex;gap:8px}
 .ctl{background:var(--cream);color:var(--green);border:1px solid var(--gold);border-radius:30px;padding:6px 14px;font-size:1rem}
@@ -122,6 +135,18 @@ main{padding-bottom:86px}
   <symbol id="petal" viewBox="0 0 40 60"><path d="M20 2C40 14 40 44 20 58 0 44 0 14 20 2z" fill="currentColor"/></symbol>
   <symbol id="spark" viewBox="0 0 100 100"><path d="M50 0C54 38 62 46 100 50 62 54 54 62 50 100 46 62 38 54 0 50 38 46 46 38 50 0z" fill="currentColor"/></symbol>
   <symbol id="playi" viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="cluster2" viewBox="0 0 220 220">
+    <g transform="translate(26 26) rotate(-16)"><use href="#leaf" x="-17" y="0" width="34" height="132"/></g>
+    <g transform="translate(26 26) rotate(-46)"><use href="#leaf" x="-16" y="0" width="32" height="124"/></g>
+    <g transform="translate(26 26) rotate(-76)"><use href="#leaf" x="-15" y="0" width="30" height="116"/></g>
+    <g transform="translate(26 30) rotate(-102)"><use href="#leaf" x="-13" y="0" width="26" height="88"/></g>
+    <use href="#bud" x="6" y="6" width="34" height="34"/>
+    <use href="#bud" x="46" y="8" width="28" height="28"/><use href="#bud" x="8" y="46" width="28" height="28"/>
+    <use href="#bud" x="82" y="34" width="22" height="22"/><use href="#bud" x="34" y="82" width="22" height="22"/>
+    <use href="#bud" x="108" y="14" width="18" height="18"/><use href="#bud" x="14" y="108" width="18" height="18"/>
+    <use href="#bud" x="66" y="62" width="20" height="20"/>
+    <g fill="#fffaf0" stroke="#d9c79b" stroke-width=".8"><circle cx="140" cy="24" r="4"/><circle cx="152" cy="36" r="3"/><circle cx="24" cy="140" r="4"/><circle cx="36" cy="152" r="3"/><circle cx="100" cy="90" r="3"/><circle cx="90" cy="100" r="3"/><circle cx="120" cy="50" r="3"/><circle cx="50" cy="120" r="3"/></g>
+  </symbol>
   <symbol id="cluster" viewBox="0 0 220 220">
     <g transform="translate(40 40) rotate(-14)"><use href="#leaf" x="-22" y="0" width="44" height="176"/></g>
     <g transform="translate(40 40) rotate(-44)"><use href="#leaf" x="-21" y="0" width="42" height="168"/></g>
@@ -156,13 +181,45 @@ main{padding-bottom:86px}
 
 <main>
   <article class="card">
-    <svg class="fl tl" viewBox="0 0 220 220" aria-hidden="true"><use href="#cluster"/></svg>
+    <svg class="fl tl" viewBox="0 0 220 220" aria-hidden="true"><use href="#cluster2"/></svg>
     <svg class="fl br" viewBox="0 0 220 220" aria-hidden="true"><use href="#cluster"/></svg>
     <div class="bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <h1 class="title" id="vTitle"></h1>
     <p class="lead" id="vLead"></p>
     <p class="name" data-i="groom"></p>
-
+    <svg class="scene" viewBox="150 100 520 450" aria-hidden="true">
+      <defs>
+        <linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="170" y1="130" x2="650" y2="530"><stop offset="0" stop-color="#e9cd8e"/><stop offset=".45" stop-color="#bf9a5e"/><stop offset="1" stop-color="#8a6932"/></linearGradient>
+        <radialGradient id="halo"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".6"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/></radialGradient>
+        <mask id="mUp" maskUnits="userSpaceOnUse" x="0" y="0" width="890" height="670"><rect width="890" height="670" fill="#fff"/><path d="M375.4 241.7A139 139 0 0 1 438 293.5" fill="none" stroke="#000" stroke-width="42"/></mask>
+        <mask id="mLow" maskUnits="userSpaceOnUse" x="0" y="0" width="890" height="670"><rect width="890" height="670" fill="#fff"/><path d="M474.4 456.3A123 123 0 0 1 414.2 417.6" fill="none" stroke="#000" stroke-width="42"/></mask>
+      </defs>
+      <circle cx="410" cy="330" r="240" fill="url(#halo)"/>
+      <g class="rings">
+        <g mask="url(#mUp)" fill="none">
+          <circle cx="508" cy="338" r="123" stroke="#7d5d2b" stroke-width="26"/>
+          <circle cx="508" cy="338" r="123" stroke="url(#gold)" stroke-width="21"/>
+          <circle cx="508" cy="338" r="117" stroke="#fff7dc" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="210 600" transform="rotate(150 508 338)" opacity=".85"/>
+        </g>
+        <g mask="url(#mLow)" fill="none">
+          <circle cx="322" cy="370" r="139" stroke="#7d5d2b" stroke-width="26"/>
+          <circle cx="322" cy="370" r="139" stroke="url(#gold)" stroke-width="21"/>
+          <circle cx="322" cy="370" r="132" stroke="#fff7dc" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="260 700" transform="rotate(170 322 370)" opacity=".85"/>
+        </g>
+        <g stroke="#fbf6e9" stroke-width="3.5" stroke-linejoin="round">
+          <path d="M482 178L512 142L540 188Z" fill="#d9b873"/>
+          <path d="M512 142L558 152L540 188Z" fill="#f6e5b0"/>
+          <path d="M558 152L612 197L540 188Z" fill="#b98f48"/>
+          <path d="M482 178L540 188L527 262Z" fill="#c9a258"/>
+          <path d="M540 188L612 197L527 262Z" fill="#94702f"/>
+        </g>
+      </g>
+      <use class="tws" href="#spark" x="496" y="120" width="52" height="52" style="color:#fff;filter:drop-shadow(0 0 6px #ffe9a8)"/>
+      <use class="tws" href="#spark" x="596" y="122" width="40" height="40" style="color:#e3b75a;animation-delay:-1.2s"/>
+      <use class="tws" href="#spark" x="176" y="166" width="32" height="32" style="color:#e3b75a;animation-delay:-.6s"/>
+      <use class="tws" href="#spark" x="300" y="500" width="26" height="26" style="color:#e3b75a;animation-delay:-1.8s"/>
+    </svg>
+    
     <div class="div"><svg><use href="#dia"/></svg></div>
     <p class="lbl" data-i="dayL"></p><p class="val" id="vDay"></p>
     <div class="div"><svg><use href="#dia"/></svg></div>
@@ -269,18 +326,25 @@ let opened=false;
 function buildEnv(){
   const W=1000,H=Math.round(1000*innerHeight/innerWidth),ax=W/2,ay=Math.round(H*.55),r=Math.round(Math.min(W,H)*.07);
   let st='';for(let i=0;i<16;i++){const s=40+((i*37)%60);st+=`<use href="#star" x="${(i*173)%W}" y="${(i*251)%H}" width="${s}" height="${s}"/>`}
+  let wp='';for(let i=0;i<72;i++){const t=i/72*Math.PI*2,k=r*1.12*(1+.055*Math.sin(3*t+.6)+.035*Math.sin(7*t+1.3)+.02*Math.sin(11*t));wp+=(i?'L':'M')+(ax+k*Math.cos(t)).toFixed(1)+' '+(ay+k*Math.sin(t)).toFixed(1)}wp+='Z';
+  const fs=r*1.15,ty=ay+r*.34,tf="'Great Vibes','Pinyon Script','Brush Script MT',cursive";
   const e=$('#env');e.setAttribute('viewBox',`0 0 ${W} ${H}`);
   e.innerHTML=`<defs>
     <radialGradient id="lightg"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#fff6d2"/><stop offset=".7" stop-color="#ffd980" stop-opacity=".6"/><stop offset="1" stop-color="#ffd980" stop-opacity="0"/></radialGradient>
     <linearGradient id="flapg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f5a4e"/><stop offset="1" stop-color="#1f4036"/></linearGradient>
-    <radialGradient id="sealg" cx=".35" cy=".3"><stop offset="0" stop-color="#f1d58f"/><stop offset="1" stop-color="#a47c36"/></radialGradient></defs>
+    <radialGradient id="waxg" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#d8484a"/><stop offset=".55" stop-color="#a1202d"/><stop offset="1" stop-color="#6a1020"/></radialGradient></defs>
     <rect width="${W}" height="${H}" fill="#18302a"/>
     <g style="color:#c9a24f" opacity=".16">${st}</g>
     <rect x="${W*.17}" y="${H*.08}" width="${W*.66}" height="${H*.8}" fill="#fbf6e9" stroke="#b8935a" stroke-width="4"/>
     <path d="M0 0L0 ${H} ${ax} ${ay}Z" fill="#244a40"/><path d="M${W} 0L${W} ${H} ${ax} ${ay}Z" fill="#1f4036"/><path d="M0 ${H}L${W} ${H} ${ax} ${ay}Z" fill="#2c5a4d"/>
     <path d="M0 ${H}L${ax} ${ay} ${W} ${H}M0 0L${ax} ${ay}M${W} 0L${ax} ${ay}" fill="none" stroke="#c9a24f" stroke-width="2" opacity=".6"/>
     <g class="flap"><path d="M0 0L${W} 0 ${ax} ${ay}Z" fill="url(#flapg)" stroke="#c9a24f" stroke-width="3"/></g>
-    <g class="eseal"><circle cx="${ax}" cy="${ay}" r="${r}" fill="url(#sealg)" stroke="#fff3c4" stroke-width="3"/><use href="#star" x="${ax-r*.6}" y="${ay-r*.6}" width="${r*1.2}" height="${r*1.2}" style="color:#18302a"/></g>
+    <g class="eseal"><path d="${wp}" fill="url(#waxg)" stroke="#5e1020" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="${ax}" cy="${ay}" r="${r*.78}" fill="none" stroke="#5e1020" stroke-width="3" opacity=".6"/>
+      <circle cx="${ax}" cy="${ay}" r="${r*.78}" fill="none" stroke="#f08c94" stroke-width="2" opacity=".45" transform="translate(-1.6 -1.6)"/>
+      <g transform="translate(1.8 1.8)" fill="#4a0a15" opacity=".85" font-family="${tf}" text-anchor="middle"><text x="${ax}" y="${ty}" font-size="${fs}">A</text></g>
+      <g transform="translate(0 0)" fill="#eb8f97"  font-family="${tf}" text-anchor="middle"><text x="${ax}" y="${ty}" font-size="${fs}">A</text></g>
+      <ellipse cx="${ax-r*.4}" cy="${ay-r*.55}" rx="${r*.34}" ry="${r*.14}" fill="#fff" opacity=".24" transform="rotate(-32 ${ax-r*.4} ${ay-r*.55})"/></g>
     <g class="light"><circle cx="${ax}" cy="${ay}" r="${Math.max(W,H)*.35}" fill="url(#lightg)"/></g>`;
   e.style.transformOrigin=`50% ${ay/H*100}%`;
   $('.flash').style.background=`radial-gradient(circle at 50% ${ay/H*100}%,#fff 0,#fffbe6 40%,#ffeaa8 100%)`;
