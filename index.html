@@ -315,7 +315,7 @@ setInterval(tick,1000);
 /* music: browsers only allow sound after a tap, so it starts on "Open"; the bottom button plays / stops it */
 function showMusic(){
   const m=$('#mus');m.classList.toggle('on',playing);m.setAttribute('aria-pressed',playing);
-  $('#musT').textContent=T[lang][playing?'musOn':'musOff'];
+  // $('#musT').textContent=T[lang][playing?'musOn':'musOff'];
 }
 function setMusic(on){
   if(on){bg.play().then(()=>{playing=true;showMusic()}).catch(()=>{playing=false;showMusic()})}
